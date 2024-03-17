@@ -57,6 +57,22 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
+    public function validator(array $user){
+        return Validator::make($user,[
+            'over_name' => 'required|string|size:10',
+            'under_name' => 'required|string|size:10',
+            'over_name_kana' => 'required|string|katakana|size:30',
+            'under_name_kana' => 'required|string|katakana|size:30',
+            'mail_address' => 'required|mail|unique:users|size:100',
+            'sex' => 'required|integer|between:1,3',
+            'old_year' => 'required|date_format:Y-m-d|after:2000/1/1',
+            'old_month' => 'required|date_format:Y-m-d|after:2000/1/1',
+            'old_day' => 'required|date_format:Y-m-d|after:2000/1/1',
+            'role' => 'required|integer|between:1,4',
+            'password' => 'required|integer|min:8|max:30|confirmed'
+        ]);
+    }
+
     public function registerPost(Request $request)
     {
         DB::beginTransaction();
@@ -67,18 +83,26 @@ class RegisterController extends Controller
             $data = $old_year . '-' . $old_month . '-' . $old_day;
             $birth_day = date('Y-m-d', strtotime($data));
             $subjects = $request->subject;
+            $user = $request->input();
+            $validate = $this->validator($user);
+            if ($validate->fails()) {
+                return redirect ('/register')
+                ->withErrors($validate)
+                ->withInput();
 
-            $user_get = User::create([
-                'over_name' => $request->over_name,
-                'under_name' => $request->under_name,
-                'over_name_kana' => $request->over_name_kana,
-                'under_name_kana' => $request->under_name_kana,
-                'mail_address' => $request->mail_address,
-                'sex' => $request->sex,
-                'birth_day' => $birth_day,
-                'role' => $request->role,
-                'password' => bcrypt($request->password)
-            ]);
+            } else {
+                $user_get = User::create([
+                    'over_name' => $request->over_name,
+                    'under_name' => $request->under_name,
+                    'over_name_kana' => $request->over_name_kana,
+                    'under_name_kana' => $request->under_name_kana,
+                    'mail_address' => $request->mail_address,
+                    'sex' => $request->sex,
+                    'birth_day' => $birth_day,
+                    'role' => $request->role,
+                    'password' => bcrypt($request->password)
+                ]);
+            }
             $user = User::findOrFail($user_get->id);
             $user->subjects()->attach($subjects);
             DB::commit();
