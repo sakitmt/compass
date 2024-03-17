@@ -4,7 +4,7 @@ namespace App\Models\Users;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Users\User;
+use App\Models\Users\Subject;
 
 class Subjects extends Model
 {
@@ -16,6 +16,7 @@ class Subjects extends Model
     ];
 
     public function users(){
-        return;// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\User', 'subject_users', 'subject_id', 'user_id')->withTimestamps();
+        // リレーションの定義
     }
 }

@@ -15,8 +15,8 @@ class CreateSubjectUsersTable extends Migration
     {
         Schema::create('subject_users', function (Blueprint $table) {
             $table->integer('id')->autoIncrement()->comment('id');
-            $table->integer('user_id')->comment('ユーザーid');
-            $table->integer('subject_id')->comment('選択科目id');
+            $table->integer('user_id')->references('id')->on('users')->comment('ユーザーid');
+            $table->integer('subject_id')->references('id')->on('subjects')->comment('選択科目id');
             $table->timestamp('created_at')->nullable()->comment('登録日時');
         });
     }
