@@ -39,19 +39,19 @@ class RegisterFormRequest extends FormRequest
     }
     public function messages(){
         return [
-            'over_name.max' => '姓は10文字以内で入力してください。',
-            'under_name.max' => '名は10文字以内で入力してください。',
-            'over_name_kana.regex' => 'セイはカタカナで入力してください。',
-            'over_name_kana.max' => 'セイは30文字以内で入力してください。',
-            'under_name_kana.regex' => 'メイはカタカナで入力してください。',
-            'under_name_kana.max' => 'メイは30文字以内で入力してください。',
-            'mail_address.email' => 'メールアドレスの形式を確認してください。',
-            'mail_address.unique' => 'すでに登録されているメールアドレスです。',
-            'mail_address.max' => 'メールアドレスは100文字以下で入力してください。',
-            'old_year.after' => '2000年1月1日以降で設定してください。',
-            'password.min' => 'パスワードは8文字以上で設定してください。',
-            'password.max' => 'パスワードは30文字以内で設定してください。',
-            'password.confirmed' => 'パスワードと確認用パスワードが一致していません。'
+            'over_name.max' => '※姓は10文字以内で入力してください。',
+            'under_name.max' => '※名は10文字以内で入力してください。',
+            'over_name_kana.regex' => '※セイはカタカナで入力してください。',
+            'over_name_kana.max' => '※セイは30文字以内で入力してください。',
+            'under_name_kana.regex' => '※メイはカタカナで入力してください。',
+            'under_name_kana.max' => '※メイは30文字以内で入力してください。',
+            'mail_address.email' => '※メールアドレスの形式を確認してください。',
+            'mail_address.unique' => '※すでに登録されているメールアドレスです。',
+            'mail_address.max' => '※メールアドレスは100文字以下で入力してください。',
+            'old_year.after' => '※2000年1月1日以降で設定してください。',
+            'password.min' => '※パスワードは8文字以上で設定してください。',
+            'password.max' => '※パスワードは30文字以内で設定してください。',
+            'password.confirmed' => '※パスワードと確認用パスワードが一致していません。'
         ];
     }
 }

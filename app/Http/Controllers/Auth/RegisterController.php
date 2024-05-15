@@ -93,11 +93,4 @@ class RegisterController extends Controller
         }
     }
 
-    /*public function RegisterFormValidates(RegisterFormRequest $request){
-        $user = User::create([
-            'user_id' => Auth::id(),
-            'over_name' => $request->over_name
-        ]);
-        return redirect()->route('auth.login.login',['msg'=>'OK']);
-    }*/
 }
