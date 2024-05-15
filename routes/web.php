@@ -61,3 +61,6 @@ Route::group(['middleware' => 'auth'], function(){
         });
     });
 });
+
+
+App::setLocale('ja');
