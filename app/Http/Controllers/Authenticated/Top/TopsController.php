@@ -9,11 +9,11 @@ use Auth;
 class TopsController extends Controller
 {
     public function show(Request $request){
-        $user = Auth::user();
-        $role = $user->role; // ユーザーのロールを取得する。必要に応じて修正してください。
+        $role = Auth::user()->role;
+        //$role = $user->role; // ユーザーのロールを取得する。必要に応じて修正してください。
 
-        return view('authenticated.top.top', ['role' => $request -> role]);
-        return view('authenticated.top.top');
+        return view('authenticated.top.top', compact('role'));
+        //return view('authenticated.top.top');
     }
 
     public function logout(){
