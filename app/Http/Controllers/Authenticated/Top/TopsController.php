@@ -8,7 +8,11 @@ use Auth;
 
 class TopsController extends Controller
 {
-    public function show(){
+    public function show(Request $request){
+        $user = Auth::user();
+        $role = $user->role; // ユーザーのロールを取得する。必要に応じて修正してください。
+
+        return view('authenticated.top.top', ['role' => $request -> role]);
         return view('authenticated.top.top');
     }
 
@@ -16,4 +20,5 @@ class TopsController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
 }
